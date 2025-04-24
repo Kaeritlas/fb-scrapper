@@ -26,7 +26,10 @@ fb_scraper/
 ├── requirements.txt            # Dépendances Python du projet
 └── run_project.sh              # Script pour tout lancer automatiquement
 ```
-
+----------------------------------------------INSTALLATION DES DÉPENDANCES-----------------------------------------------
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ---
 
 ## 🧠 Classes principales
