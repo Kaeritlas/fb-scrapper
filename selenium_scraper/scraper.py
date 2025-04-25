@@ -51,7 +51,7 @@ class FacebookScraper:
         
         return driver
     
-    def simulate_human_typing(self, element:str, text:str):
+    def _simulate_human_typing(self, element:str, text:str):
         """Simulate human-like typing patterns"""
         for char in text:
             element.send_keys(char)
@@ -59,7 +59,7 @@ class FacebookScraper:
             if random.random() < 0.1:
                 time.sleep(random.uniform(0.3, 0.7))
                 
-    def accept_cookies(self):
+    def _accept_cookies(self):
         """Clique sur le bouton 'Autoriser tous les cookies' si présent."""
         try:
             buttons = self.driver.find_elements(By.XPATH, "//div[@role='button']")
@@ -79,19 +79,19 @@ class FacebookScraper:
             self.driver.get("https://www.facebook.com/login")
             self.logger.info("🔐 Navigation vers la page de connexion Facebook.")
             #On accepte les cookies
-            self.accept_cookies()
+            self._accept_cookies()
             
             # Enter email
             email_input = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.NAME, "email"))
             )
-            self.simulate_human_typing(email_input, self.email)
+            self._simulate_human_typing(email_input, self.email)
             
             # Enter password
             password_input = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.NAME, "pass"))
             )
-            self.simulate_human_typing(password_input, self.password)
+            self._simulate_human_typing(password_input, self.password)
             
             # Click login button
             login_button = self.driver.find_element(By.XPATH, "//button[@type='submit']")
